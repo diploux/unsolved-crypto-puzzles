@@ -38,6 +38,9 @@ ENUMS = {
     },
 }
 
+ANOMALY_STATUS = re.compile(r"\*\*Status\*\*: (unexplained|promoted|explained|dismissed)")
+LEAD_FIELDS = ("**Cost**", "**Confirm**", "**Kill**", "**Status**")
+
 EVIDENCE_TAG = re.compile(
     r"\[(measured \d{4}-\d{2}-\d{2}(, `[^`]+`)?|on-chain \d{4}-\d{2}-\d{2}"
     r"|author statement[^\]]*|third party[^\]]*|inference)\]"
@@ -61,18 +64,19 @@ def established_block(text: str) -> list[tuple[int, str]]:
     return out
 
 
-def joined_bullets(text: str) -> list[tuple[int, str]]:
+def joined_bullets(text: str, whole: bool = False) -> list[tuple[int, str]]:
     """Same block, but continuation lines folded into their bullet."""
     lines = text.splitlines()
     out: list[tuple[int, str]] = []
-    inside = False
+    inside = whole
     current: tuple[int, str] | None = None
     for number, line in enumerate(lines, 1):
         if line.startswith("## "):
             if current:
                 out.append(current)
                 current = None
-            inside = line.strip() == "## What is established"
+            if not whole:
+                inside = line.strip() == "## What is established"
             continue
         if not inside:
             continue
@@ -123,7 +127,10 @@ def check_folder(folder: Path) -> list[str]:
     readme = readme_path.read_text()
 
     # Rule 1: every established line carries an evidence tag.
-    for number, bullet in joined_bullets(readme):
+    facts_path = folder / "facts.md"
+    facts_text = facts_path.read_text() if facts_path.exists() else ""
+    for number, bullet in joined_bullets(facts_text or readme,
+                                         whole=bool(facts_text)):
         if not EVIDENCE_TAG.search(bullet):
             snippet = bullet[2:80].strip()
             problems.append(
@@ -139,6 +146,30 @@ def check_folder(folder: Path) -> list[str]:
     for script in sorted(named):
         if not (folder / script).exists():
             problems.append(f"{slug}: {script} referenced but not present")
+
+    # Rule 4: every anomaly carries a lifecycle status.
+    anomalies_path = folder / "anomalies.md"
+    if anomalies_path.exists():
+        text = anomalies_path.read_text()
+        entries = re.findall(r"^## ([A-Z]\d+\..*)$", text, re.M)
+        statuses = ANOMALY_STATUS.findall(text)
+        if len(statuses) < len(entries):
+            problems.append(
+                f"{slug}/anomalies.md: {len(entries)} entries but "
+                f"{len(statuses)} carry a status line")
+
+    # Rule 5: every open lead states what would kill it.
+    leads_path = folder / "leads.md"
+    if leads_path.exists():
+        text = leads_path.read_text()
+        body = text.split("## Closed")[0]
+        blocks = re.split(r"^## \d+\. ", body, flags=re.M)[1:]
+        for block in blocks:
+            title = block.splitlines()[0].strip()
+            for field in LEAD_FIELDS:
+                if field not in block:
+                    problems.append(
+                        f"{slug}/leads.md: lead {title!r} has no {field} line")
 
     # Rule 3: README and manifest agree.
     addresses = manifest.get("addresses") or []

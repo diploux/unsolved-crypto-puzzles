@@ -35,16 +35,29 @@ and sources.
 ```
 puzzles/<slug>/
   puzzle.json     manifest, schema-validated
-  README.md       verified state, what is established, open questions
+  README.md       entry point: verified state and an index to the rest
+  facts.md        what is established, every line carrying its evidence
+  anomalies.md    observations that are odd and unexplained
+  leads.md        actionable hypotheses, ranked, each with a kill condition
   ledger.md       append-only record of what was tested
-  sources/        the author's published material, verbatim, with dates
+  sources/        the author's published material, with dates
   tools/          scripts, including an oracle with a self-test
   data/           measured outputs, each with the script that produced it
-docs/             evidence rules, style guide, templates
+series/<author>/  method knowledge shared across one author's puzzles
+docs/             evidence rules, style guide
 schema/           the manifest schema
 tools/            repository-wide scripts
 engines/          GPU and CPU search kernels
 ```
+
+The four prose files exist because an observation moves through stages, and
+collapsing them loses information. Something is first merely **odd**
+(`anomalies.md`), then becomes **actionable** (`leads.md`), then is either
+**killed** and recorded with its cost (`ledger.md`) or **held** and recorded
+with its evidence (`facts.md`). Anomalies are never deleted, including dismissed
+ones: the next reader would otherwise notice the same oddity and repeat the
+work. `tools/validate.py` enforces the stages, so an anomaly without a status or
+a lead without a kill condition fails the build.
 
 Tier, status and chain are fields in the manifest, never folders. Nothing moves
 when a price changes or a puzzle is solved, so links and history stay stable.
