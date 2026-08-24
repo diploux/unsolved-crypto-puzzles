@@ -9,7 +9,7 @@ published for this puzzle, unlike others in the same series.
 | | |
 |---|---|
 | Escrow | `1crypto24HCr178iMcKd5iUi5D4rsg1nK` ([mempool.space](https://mempool.space/address/1crypto24HCr178iMcKd5iUi5D4rsg1nK)) |
-| Prize | 312,500 sats (about $246 at BTC = $78,600, 2026-08-24) |
+| Prize | 312,500 sats (about $246 at BTC = $78,700, 2026-08-24) |
 | Chain | bitcoin |
 | Status | open |
 | On-chain | 2026-08-24: funded and unspent, 1 funding transaction, 312,500 sats |

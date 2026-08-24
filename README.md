@@ -22,6 +22,7 @@ evidence.
 <!-- catalogue:start -->
 | Puzzle | Prize | Chain | Status | Depth |
 |---|---|---|---|---|
+| [Trithemius: Wealth in Poetry](puzzles/trithemius-wealth-in-poetry/) | 3,124,630 sats (about $2,459) | bitcoin | open | documented |
 | [Zden Level HALV](puzzles/zden-halv/) | 312,500 sats (about $246) | bitcoin | open | documented |
 <!-- catalogue:end -->
 
