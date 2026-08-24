@@ -1,0 +1,121 @@
+{
+  "generated_by": "tools/build_index.py",
+  "puzzles": 1,
+  "counts_by_status": {
+    "open": 1
+  },
+  "counts_by_depth": {
+    "documented": 1
+  },
+  "entries": [
+    {
+      "schema_version": 1,
+      "slug": "zden-halv",
+      "title": "Zden Level HALV",
+      "tier": "mid",
+      "status": "open",
+      "dead_end_reason": null,
+      "series": "Zden's crypto.haluska.sk puzzle series",
+      "author": {
+        "name": "Zden (Zdenek Haluska)",
+        "handles": [
+          "x:@Zd3N"
+        ],
+        "url": "https://crypto.haluska.sk/"
+      },
+      "published": {
+        "date": "2024-04-20",
+        "url": "https://twitter.com/Zd3N/status/1781475361160663236"
+      },
+      "chain": "bitcoin",
+      "prize": {
+        "amount": 312500,
+        "asset": "sats",
+        "usd_estimate": 246,
+        "usd_snapshot": "2026-08-24",
+        "note": ""
+      },
+      "addresses": [
+        {
+          "address": "1crypto24HCr178iMcKd5iUi5D4rsg1nK",
+          "chain": "bitcoin",
+          "role": "escrow",
+          "label": "main",
+          "explorer": "https://mempool.space/address/1crypto24HCr178iMcKd5iUi5D4rsg1nK",
+          "expected": "312500 sats",
+          "verified_on": "2026-08-24",
+          "verified_state": "funded-unspent"
+        }
+      ],
+      "puzzle_type": [
+        "geometry",
+        "raw-private-key"
+      ],
+      "target_format": "256-bit private key as direct hex, P2PKH",
+      "derivation": {
+        "summary": "read the 256 quaternary levels off the waveform lattice, reduce 512 raw bits to a 256-bit key by a rule not yet identified, derive P2PKH and compare to the escrow",
+        "oracle": "tools/halv_oracle.py",
+        "oracle_certified": true,
+        "certified_against": "a positive control key generated in the same run, plus an assertion that the target is HALV and not the sibling LVL5 puzzle, whose hash160 shares its first four bytes"
+      },
+      "difficulty_left": "insight",
+      "difficulty_note": "the 256 levels are exact and confirmed by two independent fitting objectives; what is missing is the rule reducing 512 raw bits to 256. No hint has been published for this puzzle, unlike others in the series.",
+      "tested_total": {
+        "candidates": 500000000,
+        "families": 14,
+        "certified": true
+      },
+      "leads": [
+        {
+          "rank": 1,
+          "title": "how the 24 outer groups contribute their 96 bits",
+          "cost": "hours per family",
+          "status": "open"
+        },
+        {
+          "rank": 2,
+          "title": "a selector held in a visually separate element, as in the author's solved Monero puzzle",
+          "cost": "hours",
+          "status": "open"
+        },
+        {
+          "rank": 3,
+          "title": "the key as a structured bitmap, as in the author's solved Litecoin puzzle",
+          "cost": "hours",
+          "status": "open"
+        },
+        {
+          "rank": 4,
+          "title": "an author hint, none published for this puzzle",
+          "cost": "needs a person",
+          "status": "open"
+        }
+      ],
+      "solutions": [],
+      "artifacts": [
+        {
+          "path": "sources/cryptoHALV.png",
+          "sha256": "3a487ebaeb4801137f09159a2d533046936cd395f4e2f7d115ac554607790e95",
+          "source": "https://crypto.haluska.sk/",
+          "archived": null
+        }
+      ],
+      "sources": [
+        {
+          "title": "Zden, original announcement",
+          "url": "https://twitter.com/Zd3N/status/1781475361160663236",
+          "date": "2024-04-20",
+          "archived": null
+        },
+        {
+          "title": "Zden's puzzle site",
+          "url": "https://crypto.haluska.sk/",
+          "date": "2026-08-16",
+          "archived": null
+        }
+      ],
+      "third_party_material": "",
+      "last_updated": "2026-08-24"
+    }
+  ]
+}
