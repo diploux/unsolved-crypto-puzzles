@@ -40,6 +40,7 @@ reports these negatives derives Puzzle 1's escrow from Puzzle 1's published key.
 | 26 | 2026-08-19 | Audio or container metadata carries payload | all tracks, both videos | spectrograms, inversion, Morse, channel subtraction; container inspection | 0: all audio is a lossy re-encode carrying music only, one statement video is silent, container metadata is stripped by the platform | n/a | none |
 | 27 | 2026-08-20 | Running total across all families | about 350,000 candidates | every family above | 0 match | oracle certified throughout | `tools/oracle.py` |
 | 28 | 2026-08-25 | AES-128 constructions on the corrected 16-character reading, including the reading taken as text, which is exactly a 128-bit key | 252 | 9 key forms by 7 plaintexts by 4 modes, encrypt and decrypt, ECB and CBC with a zero initialisation vector | 0 match | yes: the same oracle path re-derives Puzzle 1's escrow from its published key | `tools/test_aes128.py` |
+| 29 | 2026-08-25 | An artifact mirrored and then hashed repeatedly gives the key, the puzzle's own MIRROR operation composed with iteration | 7,840 | 14 seeds by 7 mirror forms by 5 hash functions, checking every depth from 1 to 16 rather than one depth | 0 match | yes: the same oracle path re-derives Puzzle 1's escrow from its published key | `tools/test_mirror_iterated_hash.py` |
 
 ## Notes on individual rows
 
@@ -57,6 +58,8 @@ detector missed, and finds nothing comparable in Puzzle 2.
 **Row 9.** The correction retracts a whole branch of work. A base-17
 interpretation and a Hill-cipher result both rested on reading letters that were
 not there.
+
+**Row 29.** Two gaps met here. Earlier work iterated SHA-256 to seven rounds and stopped, so a depth of eight was never reached, and mirroring and iterated hashing had been tested separately but never composed. Mirroring is the setter's own operation: the video displays the word, and the C8-to-19 instruction is a bit mirror. Every depth from 1 to 16 is checked, so the negative does not depend on guessing the round count.
 
 **Row 28.** Earlier AES work used the superseded nine-character reading, bit-packed into eight bytes and doubled to make a key, so it tested neither the corrected string nor the reading that makes the arithmetic natural: sixteen characters taken as text are exactly sixteen bytes, which is an AES-128 key. Both are now covered. Note that AES cannot be inverted without its key, so there is no construction in which the recovered characters are run backwards on their own; hex-decoded they are also only half a block.
 
