@@ -45,6 +45,7 @@ the second while treating the first as live.
 | [leads.md](leads.md) | actionable hypotheses, ranked, each with a kill condition |
 | [ledger.md](ledger.md) | append-only record of what was tested, about 350,000 candidates |
 | [sources/](sources/) | the author's video descriptions, verbatim |
+| [sources/reconstructions/](sources/reconstructions/) | the recovered characters, derived from the video, with provenance |
 | [tools/](tools/) | the certified oracle and the reconstruction scripts |
 
 ## Corrections this folder carries
