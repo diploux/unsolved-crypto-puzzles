@@ -9,6 +9,10 @@ decoded source text.
 
 The ten Part 1 characters, `6A6B0860B4`, upright and left to right.
 
+Each glyph is labelled with the frame range it was read from, running 1219-1220
+through 1241-1259, so a reader can go back to the source footage and check any
+one of them.
+
 Produced from the video by reading each temporal state at its own frame window,
 cropping the glyph mask, and scaling each to a common box with nearest-neighbour
 interpolation. The clean appearance comes from that upscaling of a well-formed
@@ -33,9 +37,14 @@ it comes out in.
 
 ## `part2-six-cells-labelled.png`
 
-The same 491-pixel strip divided into six equal cells, each outlined and
-labelled, giving `723504`. The division is into equal cells, not fitted to the
-ink, which is what makes the segmentation a check rather than an assumption.
+The same strip divided into six equal cells, each tinted and labelled, giving
+`723504`. The division is into equal cells, set by arithmetic on the strip
+height rather than placed to suit the ink, which is what makes the segmentation
+a check rather than an assumption.
+
+Regenerate it with `python3 tools/figure_part2_cells.py`. Labels sit upright in
+their own gutter, vertically centred on the cell they name, so it is
+unambiguous which glyph each label refers to.
 
 An independent extraction from a different codec reproduces the underlying mask
 at about 99.54 percent of binary pixels.
