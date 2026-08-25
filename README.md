@@ -22,8 +22,9 @@ evidence.
 <!-- catalogue:start -->
 | Puzzle | Prize | Chain | Status | Depth |
 |---|---|---|---|---|
-| [Trithemius: Wealth in Poetry](puzzles/trithemius-wealth-in-poetry/) | 3,124,630 sats (about $2,459) | bitcoin | open | documented |
-| [Zden Level HALV](puzzles/zden-halv/) | 312,500 sats (about $246) | bitcoin | open | documented |
+| [Crypto Puzzles 2018: Puzzle #2](puzzles/crypto-puzzles-2018-p2/) | 0.05 ETH (about $124) | ethereum | open | documented |
+| [Trithemius: Wealth in Poetry](puzzles/trithemius-wealth-in-poetry/) | 3,124,630 sats (about $2,490) | bitcoin | open | documented |
+| [Zden Level HALV](puzzles/zden-halv/) | 312,500 sats (about $249) | bitcoin | open | documented |
 <!-- catalogue:end -->
 
 Depth is `documented` where a folder carries a full evidence ledger, and

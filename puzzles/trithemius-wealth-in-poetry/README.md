@@ -10,7 +10,7 @@ the reader they have already read every word needed to open a wallet holding
 | | |
 |---|---|
 | Escrow | `1K4ezpLybootYF23TM4a8Y4NyP7auysnRo` ([mempool.space](https://mempool.space/address/1K4ezpLybootYF23TM4a8Y4NyP7auysnRo)) |
-| Prize | 3,124,630 sats (about $2,459 at BTC = $78,700, 2026-08-24) |
+| Prize | 3,124,630 sats (about $2,490 at BTC = $79,700, 2026-08-25) |
 | Chain | bitcoin |
 | Status | open |
 | On-chain | 2026-08-24: funded and unspent, 2 funding transactions, 0 spends |

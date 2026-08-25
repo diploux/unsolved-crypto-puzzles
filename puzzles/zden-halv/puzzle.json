@@ -21,8 +21,8 @@
   "prize": {
     "amount": 312500,
     "asset": "sats",
-    "usd_estimate": 246,
-    "usd_snapshot": "2026-08-24",
+    "usd_estimate": 249,
+    "usd_snapshot": "2026-08-25",
     "note": ""
   },
   "addresses": [
@@ -105,5 +105,5 @@
     }
   ],
   "third_party_material": "",
-  "last_updated": "2026-08-24"
+  "last_updated": "2026-08-25"
 }
