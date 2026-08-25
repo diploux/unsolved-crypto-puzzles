@@ -39,6 +39,7 @@ reports these negatives derives Puzzle 1's escrow from Puzzle 1's published key.
 | 25 | 2026-08-19 | Publication metadata is a brainwallet | 72,720 | titles, descriptions, video identifiers, upload dates and timestamps, the 21-day interval | 0 match | yes | `tools/oracle.py` |
 | 26 | 2026-08-19 | Audio or container metadata carries payload | all tracks, both videos | spectrograms, inversion, Morse, channel subtraction; container inspection | 0: all audio is a lossy re-encode carrying music only, one statement video is silent, container metadata is stripped by the platform | n/a | none |
 | 27 | 2026-08-20 | Running total across all families | about 350,000 candidates | every family above | 0 match | oracle certified throughout | `tools/oracle.py` |
+| 28 | 2026-08-25 | AES-128 constructions on the corrected 16-character reading, including the reading taken as text, which is exactly a 128-bit key | 252 | 9 key forms by 7 plaintexts by 4 modes, encrypt and decrypt, ECB and CBC with a zero initialisation vector | 0 match | yes: the same oracle path re-derives Puzzle 1's escrow from its published key | `tools/test_aes128.py` |
 
 ## Notes on individual rows
 
@@ -56,6 +57,8 @@ detector missed, and finds nothing comparable in Puzzle 2.
 **Row 9.** The correction retracts a whole branch of work. A base-17
 interpretation and a Hill-cipher result both rested on reading letters that were
 not there.
+
+**Row 28.** Earlier AES work used the superseded nine-character reading, bit-packed into eight bytes and doubled to make a key, so it tested neither the corrected string nor the reading that makes the arithmetic natural: sixteen characters taken as text are exactly sixteen bytes, which is an AES-128 key. Both are now covered. Note that AES cannot be inverted without its key, so there is no construction in which the recovered characters are run backwards on their own; hex-decoded they are also only half a block.
 
 **Row 13.** This is the row that makes the other negatives load-bearing. If the
 16 recovered characters were slightly wrong, every derivation sweep would be
