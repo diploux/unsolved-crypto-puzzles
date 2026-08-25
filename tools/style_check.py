@@ -46,12 +46,19 @@ EMOJI = re.compile(
 
 
 DISABLE_WORDS = "<!-- style-check: disable-words -->"
+VERBATIM = "<!-- style-check: verbatim-source -->"
 
 
 def check_file(path: Path) -> list[str]:
     problems: list[str] = []
     text = path.read_text(encoding="utf-8", errors="replace")
     rel = path.relative_to(ROOT)
+
+    # Verbatim third-party or working-note material is governed by the rule
+    # against altering sources, not by the writing rules. Reformatting it to
+    # fit this style guide would misrepresent what was actually recorded.
+    if VERBATIM in text:
+        return problems
 
     # A page that documents the banned vocabulary has to quote it. Such a page
     # opts out of the word list with a pragma; the character rules still apply.

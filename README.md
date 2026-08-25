@@ -23,7 +23,7 @@ evidence.
 | Puzzle | Prize | Chain | Status | Depth |
 |---|---|---|---|---|
 | [Crypto Puzzles 2018: Puzzle #2](puzzles/crypto-puzzles-2018-p2/) | 0.05 ETH (about $124) | ethereum | open | documented |
-| [Smith, Lyle & Moore Hunt #2: Glimmer](puzzles/smith-lyle-moore-hunt-2/) | 0.031777 BTC (about $2,002) | bitcoin | open | factsheet |
+| [Smith, Lyle & Moore Hunt #2: Glimmer](puzzles/smith-lyle-moore-hunt-2/) | 0.031777 BTC (about $2,002) | bitcoin | open | documented |
 | [Trithemius: Wealth in Poetry](puzzles/trithemius-wealth-in-poetry/) | 3,124,630 sats (about $2,490) | bitcoin | open | documented |
 | [Zden Level HALV](puzzles/zden-halv/) | 312,500 sats (about $249) | bitcoin | open | documented |
 | [Zden Cryptopuzzle LVL.5](puzzles/zden-lvl5/) | 555,550 sats (about $350) | bitcoin | open | documented |

@@ -5,8 +5,7 @@
     "open": 5
   },
   "counts_by_depth": {
-    "documented": 4,
-    "factsheet": 1
+    "documented": 5
   },
   "entries": [
     {
@@ -198,12 +197,11 @@
         "certified_against": "the published account xpub, whose m/0/0 P2WPKH address equals the escrow; a known-wrong BIP39 test vector is also confirmed to produce NO MATCH. The BIP39-mnemonic-to-seed leg has no known-good vector, since 0 of 12 words are held"
       },
       "difficulty_left": "insight",
-      "difficulty_note": "the 12 words and passphrase are locked behind 3 password-gated pages, each requiring a specific author-intended answer to a riddle rather than a decodable cipher; about 5,000 candidates have been tried across the 3 locks with 0 hits, none of them a certified exhaustive negative",
+      "difficulty_note": "the maze is fully solved except for three final gates, each a single named cultural reference the solver must identify. The twelve seed words and passphrase sit behind West, East and South. The strongest non-guess avenue is the band's stated reuse of an unsolved Hunt 1 rainbow-road encoding, which matches Glimmer's rainbow visuals.",
       "tested_total": {
-        "candidates": 0,
-        "families": 0,
-        "certified": false,
-        "note": "no research in this catalogue; see open-crypto-puzzles for prior work"
+        "candidates": 2500,
+        "families": 11,
+        "certified": false
       },
       "leads": [],
       "solutions": [],

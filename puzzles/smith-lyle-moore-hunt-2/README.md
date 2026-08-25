@@ -1,10 +1,11 @@
 # Smith, Lyle and Moore Hunt 2: Glimmer
 
-A band funded a treasure hunt on their own website in 2022. The site is a maze
-of roughly seventy password-gated pages; an image's location metadata opens a
-compass page revealing four branches. Three branches end at a page whose
-password is the answer to a riddle written by the author, not a decoded cipher.
-The twelve seed words and a passphrase sit behind those three pages.
+A band hid a Bitcoin wallet behind a maze of about seventy password-gated pages
+on their own website in 2022. An entry image's location metadata opens a compass
+that reveals four branches. Three branches end at a locked page whose password is
+the answer to a riddle the band wrote, not a decoded cipher, and the twelve seed
+words plus a passphrase sit behind those three pages. The whole site is solved
+except for those three final gates.
 
 <!-- verified-state:start -->
 | | |
@@ -13,56 +14,73 @@ The twelve seed words and a passphrase sit behind those three pages.
 | Prize | 3,177,700 sats (about $2,533 at BTC = $79,700, 2026-08-25) |
 | Chain | bitcoin |
 | Status | open |
-| On-chain | 2026-08-16: funded and unspent, 3,177,700 sats in one transaction |
+| On-chain | 2026-08-25: funded and unspent, 3,177,700 sats in one transaction |
 | Author | Smith, Lyle and Moore, site credited to Thom Miles Royle |
 | Published | 2022-07-29, [smithlylemoore.com](https://www.smithlylemoore.com/treasure-hunt) |
 | Target | BIP39 12 words plus a passphrase, BIP84 `m/84'/0'/0'/0/0`, P2WPKH |
 <!-- verified-state:end -->
 
-## Depth of this entry
+## Where this stands
 
-**Factsheet.** This folder records the verified state, the author's own
-material, and the target format. It carries no evidence ledger, because no
-research in this catalogue has been done on this puzzle.
+This is not a cipher. The maze is solved end to end: the entry, the compass, all
+four branches, and every page up to each branch's final gate. What remains is
+three riddle answers, one each for the West, East and South locks, and behind
+them the twelve seed words and a passphrase. See [site-map.md](site-map.md) for
+the full page tree.
 
-Substantial research exists elsewhere and is not reproduced here. The
-`open-crypto-puzzles` catalogue by floflo777 documents about 5,000 tested
-candidate answers across the three locks, the branch structure of the site, and
-a refuted assumption about password casing. That work is theirs, written in
-their voice, and includes their own payout address. Read it at the source rather
-than in a copy here:
-[open-crypto-puzzles](https://github.com/floflo777/open-crypto-puzzles).
+The three unsolved gates are a design choice by the band: each is a single named
+cultural reference the solver has to identify, not a mechanism to reverse. About
+2,500 candidate answers have failed across the three over three years. That count
+is not evidence the answers are exotic; the gates give no partial credit, so a
+wrong case or format reads the same as a wrong idea, and one false assumption
+about casing had already invalidated a large block of guesses.
 
-If work is done on this puzzle in this catalogue, this entry gains
-`facts.md`, `anomalies.md`, `leads.md` and `ledger.md` like the documented ones.
-
-## What is established
-
-- The escrow holds 3,177,700 sats from a single transaction dated 2022-07-29,
-  unspent. [on-chain 2026-08-16]
-- The target is a 12-word BIP39 mnemonic plus a passphrase, derived at
-  `m/84'/0'/0'/0/0` to a P2WPKH address. The author published the account
-  extended public key on the site, and its first receiving address equals the
-  escrow, which confirms the path and the address type.
-  [author statement, [smithlylemoore.com](https://www.smithlylemoore.com/treasure-hunt)]
-- The site's page gating is server side: the content of a locked page is not
-  served until the correct password is supplied, so the locks cannot be bypassed
-  by reading the page source. [third party, [open-crypto-puzzles](https://github.com/floflo777/open-crypto-puzzles)]
-- A predecessor hunt by the same band was solved and swept by a third party in
-  2021, and its structure is documented publicly. It is useful only as a
-  template. [third party]
+The most promising avenue is not another guess. The band said on their own forum
+that they would reuse an encoding from their first hunt that nobody ever solved,
+the "rainbow road" scheme, and Glimmer's video is a literal rainbow. Recovering
+that scheme is lead 1.
 
 ## The files
 
 | File | What it holds |
 |---|---|
-| [sources/author-posts.md](sources/author-posts.md) | the author's riddle text, verbatim, with the page it appears on |
-| [tools/oracle.py](tools/oracle.py) | candidate checker, carried over from `open-crypto-puzzles` |
+| [facts.md](facts.md) | what is established, every line carrying its evidence |
+| [site-map.md](site-map.md) | the full page tree, passwords, and the three locks |
+| [anomalies.md](anomalies.md) | the clues whose targets are not yet pinned |
+| [leads.md](leads.md) | ranked next steps, each with a kill condition |
+| [ledger.md](ledger.md) | what has been tested, about 2,500 candidates |
+| [sources/glimmer-master-reference.md](sources/glimmer-master-reference.md) | the full working reference, verbatim |
+| [sources/author-posts.md](sources/author-posts.md) | the band's riddle text |
+| [tools/oracle.py](tools/oracle.py) | candidate checker |
+
+## The three locks, in one place
+
+| Lock | Format | Target | Why it is hard |
+|---|---|---|---|
+| West `wt1jy` | lowercase, one token | one word uniting six named pirates | six people from piracy, file-sharing and Silk Road; no obvious shared word |
+| East `c2ozw` | lowercase, one token | the single named reference for "the end" | a near-death sea scene after a Gandalf callback; every exact phrasing tried |
+| South `b3vye` | Title Case, one token | a "different title" for the Professor | highest value: its password is a master key opening the whole South sequence |
+
+## How the site is tested
+
+Passwords can be checked without a browser by posting to the Wix protected-page
+endpoint; a wrong password returns error code -17005 and a correct one returns
+the page content URL. The exact request and the identifiers are in
+[sources/glimmer-master-reference.md](sources/glimmer-master-reference.md).
+Requests were not rate limited across thousands in a session, but batches should
+stay modest.
 
 ## A caution on the oracle
 
 The oracle certifies only half the derivation. It confirms that the published
-extended public key produces the escrow address at the stated path, and it
-correctly rejects a known-wrong mnemonic. It cannot certify the step from a
-12-word mnemonic to a seed, because no mnemonic that reproduces this key is
-known. Any negative result from it is limited accordingly.
+extended public key produces the escrow at the stated path, and it rejects a
+known-wrong mnemonic. It cannot certify the step from a mnemonic to a seed,
+because no mnemonic reproducing this key is known. Any negative from it is
+limited accordingly.
+
+## Prior art
+
+The `open-crypto-puzzles` catalogue by floflo777 documents this puzzle at branch
+level. The full solved path, the headless testing method, the macOS entry trick,
+the Goonies ship identification, and the rainbow-road lead are from independent
+research in this catalogue and go beyond it.
